@@ -1,13 +1,14 @@
 from flask import Flask, request, flash, render_template, redirect, url_for
 from user_story import *
 
-app = Flask(__name__)
+app = Flask(__name__)# ctreate the application instance
 
 @app.route('/and/list')
 def show_user_stories():
     entries = UserStory.select().order_by(UserStory.id.asc())
     return render_template('list.html', entries=entries)
 
+# empty user story table
 @app.route('/process', methods=['POST'])
 def new_us():
     title=request.form['title']
@@ -24,6 +25,7 @@ def new_us():
 def index_page():
     return redirect(url_for('show_user_stories'))
 
+# update user story table
 @app.route('/update', methods=['POST'])
 def update_us():
     title = request.form['title']
