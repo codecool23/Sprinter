@@ -1,6 +1,6 @@
 from peewee import *
 
-#create database
+#create database for this app
 db = PostgresqlDatabase("zahoranszky", user="zahoranszky")
 
 
