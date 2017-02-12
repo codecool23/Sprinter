@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<body lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% if story %}
+    <title>Edit UserStory {{ story.id }}</title>
+    {% else %}
+    <title>Add new UserStory</title>
+    {% endif %}
+</head>
+{% block body %}
+    {% if story %}
+        <div align=left>
+            <div class=form-group>
+    <h1>Edit UserStory {{ story.id }}</h1>
+    <form action="{{ url_for('update_us') }}" method="post" class=update-us>
+            <input type=hidden name=id value={{ story.id }}>
+        <label for=title>Title</label><br>
+            <input type=text name=title value="{{ story.title }}" /><br>
+        <label for=story_text>UserStory</label><br>
+            <input type=text name=story_text value="{{ story.story_text }}" /><br>
+        <label for=acceptance_criteria>Acceptance criteria</label>
+            <textarea type=text name=acceptance_criteria>{{ story.acceptance_criteria }}</textarea><br>
+        <label for=business_value>Buisness value</label>
+            <input type=number name=buisness_value min=100 max=1500 step=100 value={{ story.buisness_value}}> &ensp; &ensp;
+        <label for=estimation>Estimation</label>
+            <input type=number name=estimation min=0.5 max=40 step=0.5 value={{ story.estimation }}> &ensp; &ensp;
+        <label for=status>Status</label>
+            <select name=status selected={{ story.status }}>
+                <option value="planning" {% if story.status=="planning" %} selected{% endif %}>Planning</option>
+                <option value="to do" {% if story.status=="to_do" %} selected{% endif %}>To Do</option>
+                <option value="in progress"{% if story.status=="in_progress" %} selected {% endif %}>In Progress</option>
+                <option value="review" {% if story.status=="review" %} selected{% endif %}>Review</option>
+                <option value="done" {% if story.status=="done"%} selected {% endif %}>Done</option>
+            </select>
+        <p><input type=submit value="Update"></p>
+    </form></div></div>
+    {% else %}
+    <div align=left>
+        <div class=form-group>
+            <h1>Add new Story</h1>
+    <form action="{{ url_for('new_us') }}" method="post" class=add-us>
+        <label for=title>Title</label><br>
+            <input type=text name=title><br>
+        <label for=story_text>UserStory</label><br>
+            <input type=text name=story_text><br>
+        <label for=acceptance_criteria>Acceptance criteria</label>
+            <textarea type=text name=acceptance_criteria></textarea><br>
+        <label for=business_value>Buisness value</label>
+            <input type=number name=buisness_value min=100 max=1500 step=100 value="100">&ensp; &ensp;
+        <label for=estimation>Estimation</label>
+            <input type=number name=estimation min=0.5 max=40 step=0.5 value=0.5>&ensp; &ensp;
+        <label for=status>Status</label>
+            <select name=status>
+                <option value="planning">Planning</option>
+                <option value="to_do">To Do</option>
+                <option value="in_progress">In Progress</option>
+                <option value="review">Review</option>
+                <option value="done">Done</option>
+            </select>
+        <p><input type=submit value="Create"></p>
+    </form></div></div>
+    {% endif %}
+{% endblock %}

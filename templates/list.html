@@ -1,0 +1,42 @@
+<head>
+    <title>Super Sprinter 3000</title>
+</head>
+{% block body %}
+    <div align=left>
+    <h1>Super Sprinter 3000</h1>
+    {% if entries %}
+        <div class=container>
+    <table>
+    <tr>
+        <th>ID</th>
+        <th>Title</th>
+        <th>User Story</th>
+        <th>Acceptence criteria</th>
+        <th>Bsns.Value</th>
+        <th>Estimation.</th>
+        <th>Status</th>
+        <th>Refactor</th>
+    </tr>
+    {% endif %}
+  {% for entry in entries %}
+      <tr>
+        <td>{{ entry.id }}</td>
+        <td>{{ entry.title }}</td>
+        <td>{{ entry.story_text }}</td>
+        <td>{{ entry.acceptance_criteria }}</td>
+        <td>{{ entry.buisness_value }}</td>
+        <td>{{ entry.estimation }}</td>
+        <td>{{ entry.status }}</td>
+        <td><a href="/story/{{ entry.id }}"><img src="/static/txtedit.png" alt="Edit US" width="18" height="18"></a>
+             <a href="/delete/{{ entry.id }}"><img src="/static/txtdelete.png" alt="Delete US" width="18" height="18" onclick="return confirm('Bad idea or maybe not,who knows')"></a></td>
+      </tr>
+
+  {% else %}
+      <h3 >Unbelievable.  No entries here so far?!</h3>
+  {% endfor %}
+</table>
+        </div>
+    <br>
+    <div class="butn"> <a href="/story" >Create a new story</a></div>
+</div>
+{% endblock %}
