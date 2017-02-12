@@ -1,5 +1,6 @@
 from models import *
 
+#the main class to call
 class UserStory(BaseModel):
     title = TextField()
     story_text = TextField()
