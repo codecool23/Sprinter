@@ -1,8 +1,13 @@
 <head>
     <title>Super Sprinter 3000</title>
+    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
+    <link rel=stylesheet type=text/css href={{ url_for('static', filename='style.css') }} />
+    <link rel=stylesheet type=text/css href={{ url_for('static', filename='table.css') }} />
 </head>
 {% block body %}
-    <div align=left>
+    <div align=center>
+    <nav class="navbar navbar-default navbar-fixed-top">
     <h1>Super Sprinter 3000</h1>
     {% if entries %}
         <div class=container>
@@ -37,6 +42,7 @@
 </table>
         </div>
     <br>
-    <div class="butn"> <a href="/story" >Create a new story</a></div>
+    <div align=center>
+        <div class="btn btn-default"> <a href="/story" >Create a new story</a></div>
 </div>
 {% endblock %}

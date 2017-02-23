@@ -7,19 +7,23 @@
     {% else %}
     <title>Add new UserStory</title>
     {% endif %}
+    <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
+    <link rel=stylesheet type=text/css href={{ url_for('static', filename='table.css') }} />
+    <link rel=stylesheet type=text/css href={{ url_for('static', filename='style.css') }} />
 </head>
 {% block body %}
     {% if story %}
-        <div align=left>
-            <div class=form-group>
+        <div align=center>
+            <div class=niceform>
     <h1>Edit UserStory {{ story.id }}</h1>
     <form action="{{ url_for('update_us') }}" method="post" class=update-us>
             <input type=hidden name=id value={{ story.id }}>
-        <label for=title>Title</label><br>
-            <input type=text name=title value="{{ story.title }}" /><br>
-        <label for=story_text>UserStory</label><br>
-            <input type=text name=story_text value="{{ story.story_text }}" /><br>
-        <label for=acceptance_criteria>Acceptance criteria</label>
+        <label for=title></label><br>
+            <input type=text name=title value="{{ story.title }}" placeholder="Title" /><br>
+        <label for=story_text></label><br>
+            <input type=text name=story_text value="{{ story.story_text }}" placeholder="Story" /><br>
+        <label for=acceptance_criteria></label>
             <textarea type=text name=acceptance_criteria>{{ story.acceptance_criteria }}</textarea><br>
         <label for=business_value>Buisness value</label>
             <input type=number name=buisness_value min=100 max=1500 step=100 value={{ story.buisness_value}}> &ensp; &ensp;
@@ -36,16 +40,18 @@
         <p><input type=submit value="Update"></p>
     </form></div></div>
     {% else %}
-    <div align=left>
-        <div class=form-group>
+    <div align=center>
+        <div class=niceform>
             <h1>Add new Story</h1>
     <form action="{{ url_for('new_us') }}" method="post" class=add-us>
-        <label for=title>Title</label><br>
-            <input type=text name=title><br>
-        <label for=story_text>UserStory</label><br>
-            <input type=text name=story_text><br>
-        <label for=acceptance_criteria>Acceptance criteria</label>
-            <textarea type=text name=acceptance_criteria></textarea><br>
+    <div class="niceform">
+        <span class="input-group-addon" id="basic-addon1">#Title</span>    
+        <label for=title></label><br>
+        <input type="text" name=title placeholder="Title" aria-describedby="basic-addon1">    
+        <label for=story_text></label><br>
+            <input type=text name=story_text placeholder="Story"><br>
+        <label for=acceptance_criteria></label>
+            <textarea type=text name=acceptance_criteria placeholder="Acceptance Criteria"></textarea><br>
         <label for=business_value_min_100>Buisness value</label>
             <input type=number name=buisness_value min=100 max=1500 step=100 value="100">&ensp; &ensp;
         <label for=estimation>Estimation</label>
